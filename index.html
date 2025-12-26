@@ -1,31 +1,576 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tushar Chauhan - Data Analytics Portfolio</title>
-    <meta name="description" content="Data Analytics professional skilled in Power BI, Python, SQL, and CRM platforms. Turning data into actionable business insights." />
-    <meta name="author" content="Tushar Chauhan" />
-    <meta name="keywords" content="Data Analytics, Power BI, Python, SQL, Business Intelligence, CRM, Tushar Chauhan" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <meta name="description"
+        content="AI-Driven Tech Executive & Economics Enthusiast specializing in data analysis and intelligent system integrations." />
 
-    <meta property="og:title" content="Tushar Chauhan - Data Analytics Portfolio" />
-    <meta property="og:description" content="Analyst | Strategist | Economics Enthusiast - Transforming data into business impact" />
-    <meta property="og:type" content="website" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tushar Chauhan - Data Analytics Portfolio" />
-    <meta name="twitter:description" content="Analyst | Strategist | Economics Enthusiast" />
-
-    <!-- Premium Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <script type="module" crossorigin src="./assets/index-CfZ0m9Ag.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-akxO9vme.css">
-  </head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-  <body>
-    <div id="root"></div>
-  </body>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-serif text-2xl font-bold tracking-tight text-foreground">TC</a>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex items-center gap-8">
+                <li><a href="#home"
+                        class="text-muted-foreground hover:text-foreground font-medium text-sm tracking-wide transition-colors duration-300 link-underline pb-1">Home</a>
+                </li>
+                <li><a href="#about"
+                        class="text-muted-foreground hover:text-foreground font-medium text-sm tracking-wide transition-colors duration-300 link-underline pb-1">About</a>
+                </li>
+                <li><a href="#skills"
+                        class="text-muted-foreground hover:text-foreground font-medium text-sm tracking-wide transition-colors duration-300 link-underline pb-1">Skills</a>
+                </li>
+                <li><a href="#projects"
+                        class="text-muted-foreground hover:text-foreground font-medium text-sm tracking-wide transition-colors duration-300 link-underline pb-1">Projects</a>
+                </li>
+                <li><a href="#contact"
+                        class="text-muted-foreground hover:text-foreground font-medium text-sm tracking-wide transition-colors duration-300 link-underline pb-1">Contact</a>
+                </li>
+                <li>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-accent/10 transition-colors duration-300"
+                        aria-label="Toggle theme">
+                        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></svg>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-foreground p-2" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="md:hidden absolute top-full left-0 w-full glass border-b border-border opacity-0 invisible transition-all duration-300">
+            <ul class="flex flex-col p-6 gap-4">
+                <li><a href="#home"
+                        class="text-muted-foreground hover:text-foreground font-medium text-lg transition-colors duration-300">Home</a>
+                </li>
+                <li><a href="#about"
+                        class="text-muted-foreground hover:text-foreground font-medium text-lg transition-colors duration-300">About</a>
+                </li>
+                <li><a href="#skills"
+                        class="text-muted-foreground hover:text-foreground font-medium text-lg transition-colors duration-300">Skills</a>
+                </li>
+                <li><a href="#projects"
+                        class="text-muted-foreground hover:text-foreground font-medium text-lg transition-colors duration-300">Projects</a>
+                </li>
+                <li><a href="#contact"
+                        class="text-muted-foreground hover:text-foreground font-medium text-lg transition-colors duration-300">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden"
+        style="background: var(--hero-bg);">
+        <div class="absolute inset-0 opacity-30"
+            style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%231e40af\' fill-opacity=\'0.03\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+        </div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 text-center max-w-4xl px-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6 animate-fade-up font-medium">Welcome
+                to my portfolio</p>
+            <h1 id="typing-text"
+                class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight min-h-[1.2em]">
+            </h1>
+            <p class="text-xl sm:text-2xl text-muted-foreground mb-10 animate-fade-up-delay-2 font-light tracking-wide">
+                Analyst · Strategist · Economics Enthusiast</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-delay-3">
+                <a href="#projects"
+                    class="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">View
+                    My Work</a>
+                <a href="#contact"
+                    class="px-8 py-4 border border-border text-foreground rounded-full font-medium text-sm tracking-wide hover:bg-card hover:border-primary/30 transition-all duration-300">Get
+                    in Touch</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-3 bg-muted-foreground/50 rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-card reveal">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-primary mb-4 font-medium text-center">About Me</p>
+            <h2 class="text-2xl sm:text-3xl font-serif font-semibold text-foreground mb-12 text-center">Building
+                Intelligent Systems That Drive Results</h2>
+            <div class="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                <p>As an <span class="text-foreground font-medium">AI-Driven Tech Executive</span>, I bridge the gap
+                    between economic theory and technical execution. Currently based at Digital Next Technologies in
+                    Dubai, I focus on designing intelligent system integrations and optimized data processes that drive
+                    strategic decision-making. My background includes a B.A. (Hons.) in Economics and over a year of
+                    hands-on experience in CRM management and marketing analytics.</p>
+                <p>I specialize in building <span class="text-foreground font-medium">real-time dashboards and automated
+                        workflows</span> that reduce manual effort and improve accuracy. Skilled in Analysis, data
+                    handling, and integration platforms, I turn complex datasets into business impact. I am driven by
+                    the challenge of solving operational problems and utilizing AI to deliver <span
+                        class="text-foreground font-medium">high-impact, scalable solutions</span> for modern
+                    enterprises that help businesses operate faster, smarter, and more efficiently.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 pt-12 border-t border-border">
+                <div
+                    class="text-center p-6 bg-secondary/50 rounded-2xl hover:bg-secondary/70 transition-colors duration-300 group">
+                    <div
+                        class="w-12 h-12 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="briefcase" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="text-3xl font-serif font-bold text-foreground mb-1">1+</div>
+                    <div class="text-sm font-medium text-foreground mb-1">Years Experience</div>
+                    <div class="text-xs text-muted-foreground">Delivering Business Impact</div>
+                </div>
+                <!-- More stats... -->
+                <div
+                    class="text-center p-6 bg-secondary/50 rounded-2xl hover:bg-secondary/70 transition-colors duration-300 group">
+                    <div
+                        class="w-12 h-12 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="folder-git-2" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="text-3xl font-serif font-bold text-foreground mb-1">10+</div>
+                    <div class="text-sm font-medium text-foreground mb-1">Projects Completed</div>
+                    <div class="text-xs text-muted-foreground">Across various domains</div>
+                </div>
+                <div
+                    class="text-center p-6 bg-secondary/50 rounded-2xl hover:bg-secondary/70 transition-colors duration-300 group">
+                    <div
+                        class="w-12 h-12 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="award" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="text-3xl font-serif font-bold text-foreground mb-1">5+</div>
+                    <div class="text-sm font-medium text-foreground mb-1">Certifications</div>
+                    <div class="text-xs text-muted-foreground">Professional credentials</div>
+                </div>
+                <div
+                    class="text-center p-6 bg-secondary/50 rounded-2xl hover:bg-secondary/70 transition-colors duration-300 group">
+                    <div
+                        class="w-12 h-12 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="text-3xl font-serif font-bold text-foreground mb-1">15+</div>
+                    <div class="text-sm font-medium text-foreground mb-1">Tools Mastered</div>
+                    <div class="text-xs text-muted-foreground">Tech-Agnostic Problem Solving</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-secondary/50 reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-primary mb-4 font-medium text-center">Expertise</p>
+            <h2 class="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-16 text-center">Skills & Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Skill Category -->
+                <div class="bg-card rounded-2xl p-8 border border-border hover-lift relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="bar-chart-3" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-serif font-semibold text-foreground">Data Analysis & BI Tools</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Power BI (Power Query, Interactive
+                                Dashboards)</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Excel (Advanced functions, Data Cleaning, Data
+                                Modeling)</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>SQL</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Python</span></li>
+                    </ul>
+                </div>
+                <!-- CRM -->
+                <div class="bg-card rounded-2xl p-8 border border-border hover-lift relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="users" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="users" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-serif font-semibold text-foreground">CRM Platforms</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Zoho One</span></li>
+                    </ul>
+                </div>
+                <!-- Integration -->
+                <div class="bg-card rounded-2xl p-8 border border-border hover-lift relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="workflow" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="workflow" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-serif font-semibold text-foreground">Integration / Workflow</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Zapier</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Zoho Flow</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Make</span></li>
+                    </ul>
+                </div>
+                <!-- Marketing -->
+                <div class="bg-card rounded-2xl p-8 border border-border hover-lift relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="mail" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-serif font-semibold text-foreground">Marketing Tools</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>WhatsApp Broadcasting Tools</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Campaign Performance Tracking</span></li>
+                        <li class="flex items-start gap-3 text-muted-foreground text-sm"><span
+                                class="text-primary mt-1">▹</span><span>Email Marketing</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="assets/resume.pdf" target="_blank"
+                    class="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-md">
+                    <i data-lucide="download" class="mr-2 h-4 w-4"></i>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section id="insights" class="py-24 bg-card reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-primary mb-4 font-medium text-center">Value Proposition
+            </p>
+            <h2 class="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-16 text-center">What I Bring to the
+                Table</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-secondary/50 border border-border rounded-2xl p-8 hover-lift group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="bar-chart-2" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-14 h-14 mb-6 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                            <i data-lucide="bar-chart-2" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-serif font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                            Data Storytelling</h3>
+                        <p class="text-muted-foreground leading-relaxed">Transforming complex raw data into compelling
+                            visual narratives that drive clarity and action.</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-secondary/50 border border-border rounded-2xl p-8 hover-lift group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="brain-circuit" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-14 h-14 mb-6 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                            <i data-lucide="brain-circuit" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-serif font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                            Strategic Insights</h3>
+                        <p class="text-muted-foreground leading-relaxed">Uncovering hidden trends and opportunities to
+                            support evidence-based business decision making.</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-secondary/50 border border-border rounded-2xl p-8 hover-lift group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                        <i data-lucide="cog" class="w-32 h-32 text-primary rotate-12"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-14 h-14 mb-6 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                            <i data-lucide="cog" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-serif font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                            Process Automation</h3>
+                        <p class="text-muted-foreground leading-relaxed">Streamlining workflows with AI and integration
+                            tools to maximize efficiency and reduce manual effort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-card reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-primary mb-4 font-medium text-center">Portfolio</p>
+            <h2 class="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-16 text-center">Featured Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group bg-secondary/30 rounded-2xl overflow-hidden border border-border hover-lift">
+                    <div
+                        class="h-40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex items-center justify-center relative overflow-hidden">
+                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🐍</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary/30 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-xl font-serif font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                            Python Data Analysis</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-4">Comprehensive data analysis
+                            projects using Python for data cleaning, visualization, and statistical analysis.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Python</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Data
+                                Analysis</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/TusharChauhan04/python-project" target="_blank"
+                                class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                                <i data-lucide="github" class="w-4 h-4"></i><span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group bg-secondary/30 rounded-2xl overflow-hidden border border-border hover-lift">
+                    <div
+                        class="h-40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex items-center justify-center relative overflow-hidden">
+                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500">📊</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary/30 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-xl font-serif font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                            Power BI Dashboards</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-4">Interactive business intelligence
+                            dashboards for data visualization and business insights.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Power
+                                BI</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Power
+                                Query</span>
+                            <span
+                                class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">DAX</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/TusharChauhan04/power-bi---projects" target="_blank"
+                                class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                                <i data-lucide="github" class="w-4 h-4"></i><span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group bg-secondary/30 rounded-2xl overflow-hidden border border-border hover-lift">
+                    <div
+                        class="h-40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex items-center justify-center relative overflow-hidden">
+                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🤖</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary/30 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-xl font-serif font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                            AI Agent Solutions</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-4">Automated workflows and AI-powered
+                            solutions for business process optimization.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">AI
+                                Agents</span>
+                            <span
+                                class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Automation</span>
+                            <span
+                                class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Integration</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                                <i data-lucide="external-link" class="w-4 h-4"></i><span>View Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-secondary/50 reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-primary mb-4 font-medium text-center">Contact</p>
+            <h2 class="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6 text-center">Let's Connect</h2>
+            <p class="text-lg text-muted-foreground text-center mb-16 max-w-2xl mx-auto">I'm always open to discussing
+                new opportunities, interesting projects, or just having a chat about some engaging ideas and topics.</p>
+
+            <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a href="mailto:chauhantushar554@gmail.com"
+                    class="group bg-card rounded-2xl p-6 border border-border hover-lift flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
+                        <i data-lucide="mail" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm text-muted-foreground mb-1">Email</p>
+                        <p class="text-foreground font-medium text-sm break-words">chauhantushar554@gmail.com</p>
+                    </div>
+                    <i data-lucide="arrow-up-right"
+                        class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/tushar-chauhan-32a63427a" target="_blank"
+                    class="group bg-card rounded-2xl p-6 border border-border hover-lift flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm text-muted-foreground mb-1">LinkedIn</p>
+                        <p class="text-foreground font-medium text-sm break-words">Tushar Chauhan</p>
+                    </div>
+                    <i data-lucide="arrow-up-right"
+                        class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-card border-t border-border">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="https://www.linkedin.com/in/tushar-chauhan-32a63427a" target="_blank"
+                    class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.instagram.com/tusharchauhan___04/" target="_blank"
+                    class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+                <a href="mailto:chauhantushar554@gmail.com"
+                    class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </a>
+            </div>
+            <p class="text-sm text-muted-foreground">© 2025 Tushar Chauhan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script Initialize -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
 </html>
